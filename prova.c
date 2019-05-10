@@ -4,22 +4,23 @@
 #define N 1000
 
 
-void crip(char [],char []);
+void crip(char [],char [],char[]);
 void UP(char []);
-void elimina(char []);
-void adiciona(char[]);
+void elimina(char [],char []);
+void adiciona(char[],char[]);
 
 void desloca(char [], int);
 int verifica(char,char[]);
 void append(char [],char);
 void copia(char[],char[]);
-int getindex(char);  
+int getindex(char,char[]);  
 int tamanho(char[]); 
-void transforma(char[]); //transforma a frase de acordo com a entrada definida
+void transforma(char[],char[]); //transforma a frase de acordo com a entrada definida
   
 int main(){
 	char string[N] = {'0'};
 	char frase[N] = {'0'};
+	char alfa[30] = {'0','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',',','.',' '};
 	
 	printf("Digite a frase para ser sua chave\n");
 	fgets(string,N,stdin);
@@ -29,17 +30,17 @@ int main(){
 	
 	UP(string);
 	UP(frase);
-	transforma(string);
-	transforma(frase);
+	transforma(string,alfa);
+	transforma(frase,alfa);
 
-	elimina(string);
-	adiciona(string);
-	crip(string,frase);
+	elimina(string,alfa);
+	adiciona(string,alfa);
+	crip(string,frase,alfa);
 	printf("%s",frase);
 	return 0;
 }
 
-void crip(char chave[],char frase[]){ // item 2)
+void crip(char chave[],char frase[], char alfa[]){ // item 2)
 	
 	int i = 0;
 	int j = 0;
@@ -47,7 +48,7 @@ void crip(char chave[],char frase[]){ // item 2)
 	tam = tamanho(chave);
 	//printf("\n%d------------------\n",tam);
 	while(frase[i] != '\0'){
-		j = j + getindex(frase[i]);
+		j = j + getindex(frase[i],alfa);
 		while( j > (tam)){
 			j = j - tam -1;
 		} 
@@ -69,8 +70,7 @@ void UP(char s[]){ //item a)
 
 }
 
-void elimina(char s[]){ //item b)
-	char alfa[30] = {'0','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',',','.',' '};
+void elimina(char s[], char alfa[]){ //item b)
 	char beta[30] = {'0'};
 	int b = 1; //indice beta
 	int i = 0;
@@ -87,8 +87,7 @@ void elimina(char s[]){ //item b)
 	
 }
 
-void adiciona(char s[]){//item c)
-	char alfa[30] = {'0','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',',','.',' '};
+void adiciona(char s[],char alfa[]){//item c)
 	int i = 1;
 	while( i<31){
 		if(!verifica(alfa[i],s)){
@@ -139,8 +138,7 @@ void copia(char s[], char z[]){
 	s[i] = '\0';
 }
 
-int getindex(char c){
-	char alfa[30] = {'0','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',',','.',' '};
+int getindex(char c, char alfa[]){
 	int i = 1;
 	while (i<30){
 		if( c == alfa[i]){
@@ -160,8 +158,7 @@ int tamanho(char s[]){
 	return i;
 }
 
-void transforma(char s[]){
-	char alfa[30] = {'0','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',',','.',' '};
+void transforma(char s[],char alfa[]){
 	int i = 0;
 	while(s[i] != '\0'){
 		if(!verifica(s[i],alfa)){
