@@ -45,13 +45,15 @@ void crip(char chave[],char frase[]){ // item 2)
 	int j = 0;
 	int tam = 0;
 	tam = tamanho(chave);
+	//printf("\n%d------------------\n",tam);
 	while(frase[i] != '\0'){
 		j = j + getindex(frase[i]);
-		while( j > (tam -1)){
-			j = j - tam - 1;
+		while( j > (tam)){
+			j = j - tam -1;
 		} 
 		frase[i] = chave[j];
 		i++;
+		//printf("------ %d ",j);
 	}
 	
 }
@@ -94,6 +96,7 @@ void adiciona(char s[]){//item c)
 		}
 		i++;
 	}
+	
 	
 }
 
